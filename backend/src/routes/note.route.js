@@ -1,8 +1,13 @@
-const express = require("express");
+import express from "express";
 
-const noteController = require("../controllers/note.controller");
+import noteController from "../controllers/note.controller.js";
+
 const noteRouter = express.Router();
 
 noteRouter.get("/api/notes", noteController.getAllNotes);
-noteRouter.post("/", noteController.createNote);
-module.exports = noteRouter;
+noteRouter.get("/api/notes/:id", noteController.getNodeById);
+noteRouter.post("/api/notes", noteController.createNote);
+noteRouter.put("/api/notes/:id", noteController.updateNote);
+noteRouter.delete("/api/notes/:id", noteController.deleteNote);
+
+export default noteRouter;

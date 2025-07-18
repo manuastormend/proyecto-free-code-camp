@@ -1,15 +1,20 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const noteRouter = require("../src/routes/note.route.js");
+import express from "express";
+import mongoose from "mongoose";
 
-require("dotenv").config({
-  path: ".env",
-});
+import noteRouter from "../src/routes/note.route.js";
+import rateLimiter from "./middleware/rateLimiter.js";
+
+import dotenv from "dotenv";
+
+dotenv.config({ path: ".env" });
 
 const server = express();
 
+//middleware
 server.use(express.json());
+server.use(rateLimiter);
 
+//routes
 server.use(noteRouter);
 
 mongoose
