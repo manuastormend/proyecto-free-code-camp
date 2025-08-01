@@ -5,12 +5,19 @@ import noteRouter from "../src/routes/note.route.js";
 import rateLimiter from "./middleware/rateLimiter.js";
 
 import dotenv from "dotenv";
+import cors from "cors";
 
 dotenv.config({ path: ".env" });
 
 const server = express();
 
 //middleware
+//cors arriba de todo
+server.use(
+  cors({
+    origin: "http://localhost:5173",
+  })
+);
 server.use(express.json());
 server.use(rateLimiter);
 

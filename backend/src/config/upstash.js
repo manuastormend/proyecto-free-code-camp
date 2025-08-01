@@ -14,7 +14,7 @@ const redis = Redis.fromEnv();
 
 const ratelimit = new Ratelimit({
   redis,
-  limiter: Ratelimit.fixedWindow(4, "10 s"),
+  limiter: Ratelimit.fixedWindow(30, "10 s"),
 });
 
 export default ratelimit;
